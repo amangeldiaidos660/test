@@ -1,0 +1,8 @@
+{
+    "users": [
+        {
+            "login": "testlog@gmail.com",
+            "password": "testuser#1234"
+        }
+    ]
+}

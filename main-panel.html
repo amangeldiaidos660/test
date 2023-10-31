@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="other.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <aside class="col-12 col-md-2 bg-dark text-light ">
+            <h1 class="sidebar-title" style="padding-top: 50px;">Admin</h1>
+            <div class="menu-item">
+                <img src="sourse/img/logo1.png" alt="Logo 1" class="menu-logo">
+                <span class="menu-text">Основное меню</span>
+            </div>
+            <div class="menu-item add-button-2">
+                <img src="sourse/img/logo2.png" alt="Logo 2" class="menu-logo">
+                <span class="menu-text">Добавить новое блюдо</span>
+            </div>
+            <div class="menu-item">
+                <img src="sourse/img/logo3.png" alt="Logo 3" class="menu-logo">
+                <span class="menu-text">Редактировать блюдо</span>
+            </div>
+            <div class="menu-item delete" >
+                <img src="sourse/img/logo4.png" alt="Logo 4" class="menu-logo">
+                <span class="menu-text">Удалить блюдо</span>
+            </div>
+        </aside>
+        
+
+        <main class="col-12 col-md-10">
+            <div class="header">
+                <div class="username">
+                    <span style="width: 400px;">Hello, testlog@gmail.com</span>
+                    <img src="sourse/img/hand.png" alt="Hand Icon" >
+                </div>
+
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search...">
+                    <img src="sourse/img/loupe-icon.png" alt="Search Icon" class="search-icon">
+                </div>
+                
+                <img src="sourse/img/avatar.png" alt="Avatar" class="avatar">
+            </div>
+            <div class="log-menu bg-dark" id="logMenu">
+                <h1 class="menu-text">Амангелді Айдос</h1>
+                <div class="log-menu-item">
+                    <img src="sourse/img/logo5.png" alt="Logo 2" class="menu-logo">
+                    <span class="menu-text">Профиль</span>
+                </div>
+                <div class="log-menu-item">
+                    <img src="sourse/img/logo6.png" alt="Logo 3" class="menu-logo">
+                    <span class="menu-text">Тех поддержка</span>
+                </div>
+                <div class="log-menu-item" >
+                    <img src="sourse/img/logo7.png" alt="Logo 4" class="menu-logo">
+                    <span class="menu-text">Выйти</span>
+                </div>
+
+            </div>
+
+            <div class="control-panel">
+                <button class="filter-button">
+                    <img src="sourse/img/filter-icon.png" alt="Filter Icon" class="button-icon">
+                    Фильтр
+                </button>
+            
+                <button class="add-button">
+                    <img src="sourse/img/add-icon.png" alt="Add Icon" class="button-icon">
+                    Добавить новое блюдо
+                </button>
+            
+                <span class="selected-text" id="selectedCount">Выбрано - 0</span>
+
+
+            </div>
+
+
+            <div class="table">
+                <table>
+                    <thead >
+                        <tr>
+                            <th> </th>
+                            <th class="column">Блюда</th>
+                            <th class="column">Цена</th>
+                            <th class="column">Порция/гр</th>
+                            <th class="column">Категория</th>
+                            <th class="column">Состав</th>
+                            <th ></th>
+                            <th ></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+
+
+            <div class="popup">
+                <div class="popup-content1">
+                    <p class="popup-text">Вы уверены что хотите удалить блюдо из меню?</p>
+                    <div class="popup-buttons">
+                        <button class="popup-button" id="confirmButton">Да</button>
+                        <button class="popup-button" id="cancelButton">Отмена</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="popup-form" id="popup-form" style="display: none;">
+                <div class="popup-content">
+                    <div class="form-photo">
+                        <img src="sourse/img/photo.jpg" alt="Фото блюда">
+                    </div>
+                    <div class="form">
+                        <h2>Новое блюдо</h2>
+                        <form>
+                            <div class="form-row">
+                                <label for="name">Название</label>
+                                <input type="text" id="name" placeholder="Название блюда" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="price">Цена</label>
+                                <input type="number" id="price" placeholder="Цена" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="portion">Порция/гр</label>
+                                <input type="number" id="portion" placeholder="Порция/гр" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="category">Категория</label>
+                                <select id="category" required>
+                                    <option value="" disabled selected>Выберите категорию</option>
+                                    <option value="category1">Категория 1</option>
+                                    <option value="category2">Категория 2</option>
+                                    <option value="category3">Категория 3</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-new-div">
+                        <div class="form-description">
+                            <textarea id="description" placeholder="Описание"></textarea>
+                        </div>
+                        <div class="form-btn">
+                            <button type="submit">Добавить в меню <i class="fas fa-arrow-right" style="margin-left: 20px;"></i></button>
+                            <button type="button" class="cancelButton" id="cancelButton">Отмена</button>
+                            
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+            
+        </main>
+        
+    </div>
+    <script>
+        document.addEventListener('click', function(event) {
+            const logMenu = document.getElementById('logMenu');
+            const avatar = document.querySelector('.avatar');
+            const target = event.target;
+            if (!logMenu.contains(target) && target !== avatar) {
+                logMenu.style.display = 'none'; 
+            }
+        });
+
+        // Остальной код
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.querySelector('.add-button');
+            const addButton2 = document.querySelector('.add-button-2');
+            const popupForm = document.getElementById('popup-form');
+            const cancelButton = document.querySelector('.cancelButton');
+            const logMenu = document.getElementById('logMenu');
+            const avatar = document.querySelector('.avatar');
+
+            // Код для открытия поп-ап меню и формы
+            addButton.addEventListener('click', function() {
+                popupForm.style.display = 'flex';
+            });
+
+            addButton2.addEventListener('click', function() {
+                popupForm.style.display = 'flex';
+            });
+
+            cancelButton.addEventListener('click', function() {
+                popupForm.style.display = 'none';
+            });
+
+            avatar.addEventListener('click', function() {
+                logMenu.style.display = 'flex';
+            });
+        });
+
+
+
+
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('menu.json')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('table-body');
+                    const selectedCountElement = document.getElementById('selectedCount'); 
+                    let selectedCount = 0; 
+
+                    data.forEach((item, index) => {
+                        const uniqueId = `myCheckbox${index}`;
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>                                
+                                <label class="checkbox">
+                                    <input class="checkbox-input" type="checkbox" id="${uniqueId}">
+                                    <svg class="checkbox-icon" viewBox="0 0 22 22">
+                                        <rect width="23" height="23" x=".5" y=".5" fill="#FFF" stroke="#D0D5DD" rx="6" />
+                                        <path class="tick" stroke="#D87722" fill="none" stroke-linecap="round" stroke-width="4" d="M5 12l5 5 9-9" />
+                                    </svg>
+                                </label>
+                            </td>
+                            <td class="column">
+                                <img src="${item.Image}" alt="${item.Name}" width="50" height="50" style="border-radius: 50%; margin-right: 10px;">
+                                ${item.Name}
+                            </td>
+                            <td class="column">${item.Price}</td>
+                            <td class="column">${item.Portion}</td>
+                            <td class="column">${item.Category}</td>
+                            <td class="column">${item.Description.slice(0, 40)}${item.Description.length > 16 ? '...' : ''}</td>
+                            <td class="actions">
+                                <img src="sourse/img/delete.png" alt="Удалить" width="50" height="50" class="del">
+                            </td>
+                            <td class="actions">
+                                <img src="sourse/img/edit.png" alt="Редактировать" width="50" height="50" class="edit">
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+
+                        const tdElements = row.querySelectorAll('td');
+
+                        tdElements.forEach(td => {
+                            td.addEventListener('click', () => {
+                                const checkbox = td.closest('tr').querySelector('.checkbox-input');
+                                checkbox.checked = !checkbox.checked;
+                                selectedCount = document.querySelectorAll('.checkbox-input:checked').length;
+                                selectedCountElement.textContent = `Выбрано - ${selectedCount}`;
+                            });
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки данных:', error);
+                });
+        });
+
+    </script>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuItems.forEach(item => {
+                    item.classList.remove('selected');
+                });
+
+                item.classList.add('selected');
+            });
+        });
+    </script>
+
+
+<script>
+    window.onload = function() {
+        const popup = document.querySelector('.popup');
+        const confirmButton = document.getElementById('confirmButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const open  = document.querySelector('add-button');
+
+        const deleteButtons = document.querySelectorAll('.del');
+        const delbtn = document.getElementsByClassName('delete');
+        console.log('Количество кнопок с классом "del":', deleteButtons.length);
+        console.log('Количество кнопок с классом "delete":', delbtn.length);
+
+        deleteButtons.forEach(deleteButton => {
+            deleteButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                popup.style.display = 'flex';
+
+                confirmButton.addEventListener('click', () => {
+                    popup.style.display = 'none';
+                });
+
+                cancelButton.addEventListener('click', () => {
+                    popup.style.display = 'none';
+                });
+            });
+        });
+
+        const delButtons = document.querySelectorAll('.delete');
+
+delButtons.forEach(delbtn => {
+    delbtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const selectedItems = document.querySelectorAll('.checkbox-input:checked');
+
+        if (selectedItems.length === 0) {
+            alert('Выберите элемент для удаления.');
+        } else {
+            popup.style.display = 'flex';
+
+            confirmButton.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+
+            cancelButton.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        }
+    });
+});
+
+};
+
+    
+</script>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const addButton = document.querySelector('.form-btn button');
+    const popup = document.querySelector('.popup-form');
+
+
+    addButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const price = document.getElementById('price').value;
+        const portion = document.getElementById('portion').value;
+        const category = document.getElementById('category').value;
+        const description = document.getElementById('description').value;
+        const menuData = JSON.parse(localStorage.getItem('menu')) || [];
+        menuData.push({
+            Name: name,
+            Price: parseInt(price),
+            Portion: parseInt(portion),
+            Category: category,
+            Description: description,
+            Image: 'sourse/img/img.png'
+        });
+
+        const jsonData = JSON.stringify(menuData);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'menu.json';
+        document.body.appendChild(a);
+        a.click();
+
+  
+        URL.revokeObjectURL(url);
+
+        popup.style.display = 'none';
+        alert('Блюдо успешно добавлено в меню и сохранено в файл menu.json!');
+
+        document.addEventListener('click', function(event) {
+        if (close.contains(event.target)) {
+            popup.style.display = 'none'; 
+        }
+    });
+    });
+});
+
+</script>
+</body>
+</html>
