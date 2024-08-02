@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Обрабатываем запросы на конкретные страницы
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^admin$ /admin.html [L]
+    RewriteRule ^contacts$ /contacts.html [L]
+    RewriteRule ^about$ /about.html [L]
+
+    # Перенаправляем все остальные запросы на index.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+
+    # Добавьте новые страницы ниже
+    # Например, для страницы "services" добавьте следующую строку:
+    # RewriteRule ^services$ /services.html [L]
+</IfModule>
